@@ -30,6 +30,11 @@ export const ANALYTICS_EVENTS = [
 
 export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[number];
 
+/** Filtre les noms d'événement issus du DOM : seule la nomenclature ci-dessus est émise. */
+export function isAnalyticsEvent(value: string | null | undefined): value is AnalyticsEvent {
+  return typeof value === "string" && (ANALYTICS_EVENTS as readonly string[]).includes(value);
+}
+
 export interface AnalyticsPayload {
   page_path?: string;
   page_type?: "home" | "landing" | "trade" | "situation" | "guide" | "hub" | "info" | "form";

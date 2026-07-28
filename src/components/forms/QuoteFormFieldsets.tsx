@@ -8,6 +8,7 @@ import {
   TextareaField,
   TextField,
 } from "@/components/forms/Field";
+import { TradeSearchAssist } from "@/components/forms/TradeSearchAssist";
 import { fieldId, type QuoteDefaults } from "@/components/forms/quote-form-fields";
 import {
   callbackSlotOptions,
@@ -61,6 +62,7 @@ export function ActivityFields({ errorFor, defaults }: StepProps) {
         {...(defaults.trade ? { defaultValue: defaults.trade } : {})}
         required
       />
+      <TradeSearchAssist selectId={fieldId("activity.trade")} />
 
       <MultiSelectField
         {...field("activity.secondaryTrades", errorFor)}

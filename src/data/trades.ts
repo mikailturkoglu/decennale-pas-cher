@@ -1,3 +1,5 @@
+import { getTradeCategory } from "@/data/trade-categories";
+import { normalizeSearch } from "@/lib/search";
 import type { ContentPriority, TradeCategorySlug } from "@/types/content";
 
 /**
@@ -196,3 +198,29 @@ export function tradesByCategory(category: TradeCategorySlug): TradeRegistryEntr
 
 /** Valeurs acceptées par le formulaire pour le champ métier. */
 export const tradeValues: readonly string[] = tradeRegistry.map((trade) => trade.value);
+
+export interface TradeSearchEntry {
+  slug: string;
+  name: string;
+  value: string;
+  category: TradeCategorySlug;
+  /** Chaîne normalisée interrogée par la recherche : nom, synonymes et famille. */
+  haystack: string;
+}
+
+/**
+ * Index de recherche des métiers.
+ *
+ * Construit une seule fois au chargement du module : les composants de
+ * recherche reçoivent des chaînes déjà normalisées et n'ont donc aucun calcul
+ * de translittération à faire dans le navigateur.
+ */
+export const tradeSearchIndex: readonly TradeSearchEntry[] = tradeRegistry.map((trade) => ({
+  slug: trade.slug,
+  name: trade.name,
+  value: trade.value,
+  category: trade.category,
+  haystack: normalizeSearch(
+    [trade.name, getTradeCategory(trade.category).name, ...(trade.synonyms ?? [])].join(" "),
+  ),
+}));

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { NavColumns } from "@/components/layout/NavColumns";
 import { primaryNavigation } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { isPlaceholder } from "@/lib/placeholders";
@@ -69,34 +70,8 @@ export function MobileNav() {
                       +
                     </span>
                   </summary>
-                  <div className="pb-3">
-                    <Link
-                      href={section.path}
-                      onClick={close}
-                      className="block py-2 text-action-700 underline underline-offset-4"
-                    >
-                      Voir : {section.label}
-                    </Link>
-                    {section.columns.map((column) => (
-                      <div key={column.title} className="mt-2">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-ink-600">
-                          {column.title}
-                        </p>
-                        <ul className="mt-1">
-                          {column.links.map((link) => (
-                            <li key={link.path}>
-                              <Link
-                                href={link.path}
-                                onClick={close}
-                                className="block py-2 text-ink"
-                              >
-                                {link.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                  <div className="space-y-2 pb-3">
+                    <NavColumns section={section} variant="mobile" onNavigate={close} />
                   </div>
                 </details>
               </li>

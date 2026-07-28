@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { cookieCategories } from "@/data/cookies";
+import { isAnalyticsEvent, trackEvent } from "@/lib/analytics";
 import {
   CONSENT_CHANGE_EVENT,
   DEFAULT_CONSENT,
@@ -161,13 +163,21 @@ export function ConsentManager() {
 }
 
 /**
- * Initialise la couche de mesure après consentement.
+ * Initialise la couche de mesure après consentement et relaie les événements.
  *
  * Le tableau `dataLayer` n'est créé qu'une fois l'accord donné : en son
- * absence, `trackEvent` ne fait rien. Le chargement du script de l'outil retenu
- * viendra ici, une fois le fournisseur choisi.
+ * absence, `trackEvent` ne fait rien, y compris pour les événements relayés
+ * ci-dessous. Le chargement du script de l'outil retenu viendra ici, une fois
+ * le fournisseur choisi.
+ *
+ * Les interactions sont captées par délégation sur `document` à partir des
+ * attributs `data-analytics-event` posés dans le balisage : aucun composant
+ * n'a besoin de devenir interactif pour être mesuré, et la nomenclature
+ * d'événements reste centralisée.
  */
 export function MeasurementLoader() {
+  const pathname = usePathname();
+
   useEffect(() => {
     function enableIfConsented() {
       const stored = readConsentCookie();
@@ -179,6 +189,32 @@ export function MeasurementLoader() {
     enableIfConsented();
     window.addEventListener(CONSENT_CHANGE_EVENT, enableIfConsented);
     return () => window.removeEventListener(CONSENT_CHANGE_EVENT, enableIfConsented);
+  }, []);
+
+  useEffect(() => {
+    trackEvent("page_view", { page_path: pathname });
+  }, [pathname]);
+
+  useEffect(() => {
+    function onClick(event: MouseEvent) {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const trigger = target.closest<HTMLElement>("[data-analytics-event]");
+      const name = trigger?.dataset.analyticsEvent;
+      if (!trigger || !isAnalyticsEvent(name)) return;
+
+      const { analyticsTrade, analyticsSituation, analyticsSource } = trigger.dataset;
+      trackEvent(name, {
+        page_path: window.location.pathname,
+        ...(analyticsTrade ? { trade: analyticsTrade } : {}),
+        ...(analyticsSituation ? { situation: analyticsSituation } : {}),
+        ...(analyticsSource ? { source: analyticsSource } : {}),
+      });
+    }
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
   }, []);
 
   return null;
