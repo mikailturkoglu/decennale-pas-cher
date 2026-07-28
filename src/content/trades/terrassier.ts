@@ -11,7 +11,7 @@ export const terrassier = defineTrade({
   seo: {
     title: "Assurance décennale terrassier : prix et devis | DécennaleBTP.fr",
     description:
-      "Terrassier, entreprise de travaux publics ou micro-entrepreneur : comparez des solutions de RC décennale selon vos travaux de sol, votre expérience et votre chiffre d’affaires.",
+      "Terrassement, remblais, plateformes, tranchées : comparez des solutions de RC décennale adaptées aux travaux de sol qui conditionnent la stabilité de l’ouvrage.",
     primaryKeyword: "assurance décennale terrassier",
     secondaryKeywords: [
       "prix assurance décennale terrassier",

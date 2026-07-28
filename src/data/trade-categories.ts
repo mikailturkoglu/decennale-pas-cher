@@ -5,7 +5,10 @@ export interface TradeCategory {
   name: string;
   /** Nom court utilisé dans le fil d'Ariane. */
   shortName: string;
+  /** Titre de page (H1), plus explicite que le title. */
   title: string;
+  /** Title HTML, hors marque : doit rester court pour ne pas être tronqué. */
+  seoTitle: string;
   description: string;
   intro: string;
   /** Ce que ce regroupement change concrètement pour l'assurance. */
@@ -18,6 +21,7 @@ export const tradeCategories: readonly TradeCategory[] = [
     name: "Préparation et aménagement du site",
     shortName: "Préparation du site",
     title: "Assurance décennale : métiers de la préparation et de l’aménagement du site",
+    seoTitle: "Décennale : terrassement, démolition et VRD",
     description:
       "Terrassement, démolition, VRD, traitement des sols : découvrez comment déclarer ces activités auprès d’un assureur décennale et demandez des propositions.",
     intro:
@@ -33,6 +37,7 @@ export const tradeCategories: readonly TradeCategory[] = [
     name: "Structure et gros œuvre",
     shortName: "Gros œuvre",
     title: "Assurance décennale : métiers du gros œuvre et de la structure",
+    seoTitle: "Assurance décennale : métiers du gros œuvre",
     description:
       "Maçonnerie, fondations, charpente, ossature bois : comparez des solutions de RC décennale adaptées aux activités de structure du bâtiment.",
     intro:
@@ -48,6 +53,7 @@ export const tradeCategories: readonly TradeCategory[] = [
     name: "Clos et couvert",
     shortName: "Clos et couvert",
     title: "Assurance décennale : métiers du clos et du couvert",
+    seoTitle: "Assurance décennale : clos et couvert",
     description:
       "Couverture, étanchéité, façade, menuiserie extérieure : déclarez précisément vos activités et demandez des propositions d’assurance décennale.",
     intro:
@@ -63,6 +69,7 @@ export const tradeCategories: readonly TradeCategory[] = [
     name: "Divisions, aménagements et finitions",
     shortName: "Aménagement et finitions",
     title: "Assurance décennale : métiers de l’aménagement et des finitions",
+    seoTitle: "Décennale : aménagement et finitions",
     description:
       "Plâtrerie, carrelage, peinture, menuiserie intérieure, serrurerie : comparez des solutions de décennale adaptées aux lots de finition.",
     intro:
@@ -78,6 +85,7 @@ export const tradeCategories: readonly TradeCategory[] = [
     name: "Lots techniques",
     shortName: "Lots techniques",
     title: "Assurance décennale : métiers des lots techniques",
+    seoTitle: "Assurance décennale : lots techniques",
     description:
       "Plomberie, chauffage, électricité, climatisation, énergies renouvelables : demandez des propositions de RC décennale adaptées à vos installations.",
     intro:
@@ -93,6 +101,7 @@ export const tradeCategories: readonly TradeCategory[] = [
     name: "Conception et maîtrise d’œuvre",
     shortName: "Conception",
     title: "Assurance décennale : conception, maîtrise d’œuvre et ingénierie",
+    seoTitle: "Décennale : conception et maîtrise d’œuvre",
     description:
       "Architecte, maître d’œuvre, bureau d’études, contractant général : comparez des solutions de responsabilité décennale et de RC professionnelle.",
     intro:

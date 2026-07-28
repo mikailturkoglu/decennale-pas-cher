@@ -9,9 +9,9 @@ export const peintre = defineTrade({
   status: "published",
   priority: "P0",
   seo: {
-    title: "Assurance décennale peintre en bâtiment : prix et devis | DécennaleBTP.fr",
+    title: "Assurance décennale peintre : prix et devis | DécennaleBTP.fr",
     description:
-      "Peintre en bâtiment, applicateur de revêtements ou micro-entrepreneur : comparez des solutions de RC décennale selon vos activités déclarées, votre expérience et votre chiffre d’affaires.",
+      "Peinture intérieure et extérieure, ravalement, revêtements souples : comparez des solutions de RC décennale adaptées aux supports que vous préparez.",
     primaryKeyword: "assurance décennale peintre",
     secondaryKeywords: [
       "prix assurance décennale peintre",

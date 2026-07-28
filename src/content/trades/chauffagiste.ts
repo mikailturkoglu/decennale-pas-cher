@@ -11,7 +11,7 @@ export const chauffagiste = defineTrade({
   seo: {
     title: "Assurance décennale chauffagiste : prix et devis | DécennaleBTP.fr",
     description:
-      "Chauffagiste, installateur de pompe à chaleur ou plombier-chauffagiste : comparez des solutions de RC décennale selon vos installations, votre expérience et votre chiffre d’affaires.",
+      "Chaudière, pompe à chaleur, plancher chauffant : comparez des solutions de RC décennale adaptées à vos installations de chauffage et à leur mise en service.",
     primaryKeyword: "assurance décennale chauffagiste",
     secondaryKeywords: [
       "prix assurance décennale chauffagiste",

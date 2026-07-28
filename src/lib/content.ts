@@ -220,7 +220,7 @@ function sectionOf(page: AnyContentPage): SitemapSection {
 
 function lastModifiedOf(page: AnyContentPage): string {
   if (page.type === "info") {
-    return page.editorial?.modifiedAt ?? BUILD_DATE;
+    return page.editorial?.modifiedAt ?? page.updatedAt ?? BUILD_DATE;
   }
   return page.editorial.modifiedAt;
 }

@@ -11,7 +11,7 @@ export const macon = defineTrade({
   seo: {
     title: "Assurance décennale maçon : prix et devis | DécennaleBTP.fr",
     description:
-      "Maçon, entreprise de gros œuvre ou micro-entrepreneur : comparez des solutions de RC décennale selon vos activités déclarées, votre expérience et votre chiffre d’affaires.",
+      "Maçon, entreprise de gros œuvre ou micro-entrepreneur : comparez des solutions de RC décennale adaptées aux travaux de maçonnerie déclarés.",
     primaryKeyword: "assurance décennale maçon",
     secondaryKeywords: [
       "prix assurance décennale maçon",

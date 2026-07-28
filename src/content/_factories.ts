@@ -213,6 +213,9 @@ export function defineInfoPage(input: InfoInput): InfoPage {
     ...rest,
     type: "info",
     path: normalizePath(rest.path),
+    // Toute page affiche une date : une page légale ou institutionnelle sans
+    // date de mise à jour n'est pas vérifiable par le lecteur.
+    updatedAt: rest.updatedAt ?? DEFAULT_EDITORIAL.modifiedAt,
     ...(sources.length > 0 ? { sources: [...new Set(sources)].map((key) => SOURCES[key]) } : {}),
     ...(editorialOverrides ? { editorial: editorial(editorialOverrides) } : {}),
     breadcrumb: [

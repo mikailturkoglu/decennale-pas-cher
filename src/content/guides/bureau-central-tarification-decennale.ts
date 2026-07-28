@@ -9,7 +9,7 @@ export const bureauCentralTarificationDecennale = defineGuide({
   seo: {
     title: "BCT assurance décennale : recours après un refus d’assurance",
     description:
-      "Le Bureau central de tarification permet à une entreprise du bâtiment refusée par les assureurs d’obtenir une couverture décennale. Rôle, conditions et limites du recours.",
+      "Le Bureau central de tarification permet à une entreprise du bâtiment refusée par les assureurs d’obtenir une couverture décennale. Rôle, conditions et limites.",
     primaryKeyword: "bureau central de tarification décennale",
     secondaryKeywords: [
       "BCT assurance décennale",

@@ -9,7 +9,7 @@ export const notreMethode = defineInfoPage({
   seo: {
     title: "Notre méthode : ce que nous comparons et comment | DécennaleBTP.fr",
     description:
-      "Quelles offres sont réellement étudiées, comment les partenaires sont sélectionnés, quels critères sont examinés, ce qui n’est pas comparé et comment nos contenus sont vérifiés.",
+      "Quelles offres sont réellement étudiées, comment les partenaires sont sélectionnés, quels critères sont examinés, ce qui n’est pas comparé et comment nous vérifions.",
     primaryKeyword: "méthodologie comparaison assurance décennale",
     secondaryKeywords: [
       "comment nous comparons les devis décennale",

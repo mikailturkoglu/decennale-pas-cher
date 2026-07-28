@@ -9,7 +9,7 @@ export const exclusionsAssuranceDecennale = defineGuide({
   seo: {
     title: "Exclusions assurance décennale : les cas de refus de garantie",
     description:
-      "Activité non déclarée, technique non courante, défaut d’entretien, fausse déclaration : les principales causes de refus de garantie en assurance décennale, expliquées.",
+      "Activité non déclarée, technique non courante, défaut d’entretien, fausse déclaration : les principales causes de refus de garantie en assurance décennale.",
     primaryKeyword: "exclusions assurance décennale",
     secondaryKeywords: [
       "refus de garantie décennale",

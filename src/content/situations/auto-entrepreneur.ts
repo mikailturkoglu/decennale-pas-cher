@@ -7,7 +7,7 @@ export const autoEntrepreneur = defineSituation({
   seo: {
     title: "Assurance décennale auto-entrepreneur : prix et devis",
     description:
-      "Micro-entrepreneur du bâtiment : comparez des solutions de garantie décennale selon votre métier, votre expérience et votre chiffre d’affaires, et préparez votre dossier.",
+      "Micro-entrepreneur du bâtiment : comparez des solutions de garantie décennale selon votre métier, votre expérience et votre chiffre d’affaires prévisionnel.",
     primaryKeyword: "assurance décennale auto entrepreneur",
     secondaryKeywords: [
       "décennale micro entrepreneur",

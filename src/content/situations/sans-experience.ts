@@ -8,7 +8,7 @@ export const sansExperience = defineSituation({
   seo: {
     title: "Assurance décennale sans expérience : ce qui est examiné",
     description:
-      "Reconversion ou débutant dans le bâtiment : découvrez comment valoriser une formation ou une expérience partielle pour obtenir une décennale adaptée à votre activité.",
+      "Reconversion ou débutant dans le bâtiment : comment valoriser une formation ou une expérience partielle pour obtenir une décennale adaptée à votre activité.",
     primaryKeyword: "décennale sans expérience",
     secondaryKeywords: [
       "assurance décennale débutant",

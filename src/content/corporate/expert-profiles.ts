@@ -23,15 +23,16 @@ export function expertProfileSlug(expert: ExpertReference): string {
 function profilePage(expert: ExpertReference): InfoPage {
   const identified = !isPlaceholder(expert.name);
   const displayName = identified ? expert.name : expert.role;
+  const titleName = identified ? expert.name : `Profil ${expert.shortRole.toLowerCase()}`;
 
   return defineInfoPage({
     path: expert.profilePath,
     name: displayName,
     status: "published",
     seo: {
-      title: `${displayName} | DécennaleBTP.fr`,
-      description: `Parcours, qualifications et périmètre d’intervention de ${displayName.toLowerCase()} sur les contenus d’assurance décennale publiés par DécennaleBTP.fr.`,
-      primaryKeyword: `${displayName} assurance décennale`,
+      title: `${titleName} | DécennaleBTP.fr`,
+      description: `Rôle, parcours et qualifications de l’intervenant en ${expert.shortRole.toLowerCase()} des contenus d’assurance décennale publiés par DécennaleBTP.fr.`,
+      primaryKeyword: `${titleName} assurance décennale`,
       secondaryKeywords: ["auteur assurance construction", "relecture expert décennale"],
       // Une fiche sans identité renseignée n'a pas de valeur pour l'index.
       noindex: !identified,

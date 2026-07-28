@@ -11,7 +11,7 @@ export const etancheur = defineTrade({
   seo: {
     title: "Assurance décennale étancheur : prix et devis | DécennaleBTP.fr",
     description:
-      "Étancheur, entreprise de toiture-terrasse ou applicateur de résine : comparez des solutions de RC décennale selon vos procédés déclarés, votre expérience et votre chiffre d’affaires.",
+      "Toiture-terrasse, résine, cuvelage, relevés : comparez des solutions de RC décennale adaptées aux procédés d’étanchéité que vous mettez en œuvre.",
     primaryKeyword: "assurance décennale étancheur",
     secondaryKeywords: [
       "prix assurance décennale étancheur",

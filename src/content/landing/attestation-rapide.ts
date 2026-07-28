@@ -9,7 +9,7 @@ export const attestationRapide = defineLanding({
   seo: {
     title: "Attestation décennale rapide : accélérer réellement son dossier",
     description:
-      "Besoin d’une attestation d’assurance décennale rapidement ? Découvrez ce qui allonge les délais, les pièces à préparer et les erreurs qui font perdre le plus de temps.",
+      "Besoin d’une attestation d’assurance décennale rapidement ? Ce qui allonge les délais, les pièces à préparer et les erreurs qui font perdre le plus de temps.",
     primaryKeyword: "attestation décennale rapide",
     secondaryKeywords: [
       "décennale rapide",

@@ -10,7 +10,7 @@ export const nomenclatureActivitesBtp = defineGuide({
   seo: {
     title: "Nomenclature activités BTP : déclarer ses travaux à l’assureur",
     description:
-      "Comprenez la nomenclature d’activités utilisée par les assureurs construction, pourquoi elle diffère du code APE et comment traduire vos travaux en activités déclarées.",
+      "Comprenez la nomenclature d’activités des assureurs construction, pourquoi elle diffère du code APE et comment traduire vos travaux en activités déclarées.",
     primaryKeyword: "nomenclature activités BTP assurance",
     secondaryKeywords: [
       "nomenclature activité décennale",

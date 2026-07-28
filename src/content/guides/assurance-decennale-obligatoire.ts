@@ -9,7 +9,7 @@ export const assuranceDecennaleObligatoire = defineGuide({
   seo: {
     title: "Assurance décennale obligatoire : qui est concerné et sanctions",
     description:
-      "Qui doit souscrire une assurance décennale, pour quels travaux, à partir de quand, et que risque une entreprise du bâtiment non assurée ? Réponses sourcées et à jour.",
+      "Qui doit souscrire une assurance décennale, pour quels travaux, à partir de quand, et que risque une entreprise du bâtiment non assurée ? Réponses sourcées.",
     primaryKeyword: "assurance décennale obligatoire",
     secondaryKeywords: [
       "obligation assurance décennale",

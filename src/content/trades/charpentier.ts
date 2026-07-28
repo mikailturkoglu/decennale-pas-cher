@@ -11,7 +11,7 @@ export const charpentier = defineTrade({
   seo: {
     title: "Assurance décennale charpentier : prix et devis | DécennaleBTP.fr",
     description:
-      "Charpentier bois, constructeur d’ossature ou charpentier-couvreur : comparez des solutions de RC décennale selon vos ouvrages déclarés, votre expérience et votre chiffre d’affaires.",
+      "Charpente traditionnelle, fermettes, ossature bois : comparez des solutions de RC décennale adaptées aux ouvrages porteurs en bois que vous déclarez.",
     primaryKeyword: "assurance décennale charpentier",
     secondaryKeywords: [
       "prix assurance décennale charpentier",

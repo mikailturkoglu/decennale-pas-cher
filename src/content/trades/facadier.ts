@@ -11,7 +11,7 @@ export const facadier = defineTrade({
   seo: {
     title: "Assurance décennale façadier : prix et devis | DécennaleBTP.fr",
     description:
-      "Façadier, applicateur d’enduit ou entreprise de ravalement : comparez des solutions de RC décennale selon vos systèmes déclarés, votre expérience et votre chiffre d’affaires.",
+      "Enduit, ravalement, isolation par l’extérieur : comparez des solutions de RC décennale adaptées aux systèmes de façade et aux supports que vous reprenez.",
     primaryKeyword: "assurance décennale façadier",
     secondaryKeywords: [
       "prix assurance décennale façadier",

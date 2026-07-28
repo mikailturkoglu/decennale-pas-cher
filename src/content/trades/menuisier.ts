@@ -11,7 +11,7 @@ export const menuisier = defineTrade({
   seo: {
     title: "Assurance décennale menuisier : prix et devis | DécennaleBTP.fr",
     description:
-      "Menuisier poseur, fabricant ou installateur PVC et aluminium : comparez des solutions de RC décennale selon vos activités déclarées, votre expérience et votre chiffre d’affaires.",
+      "Fenêtres, portes, PVC et aluminium, véranda : comparez des solutions de RC décennale adaptées à vos poses de menuiserie et à leur étanchéité.",
     primaryKeyword: "assurance décennale menuisier",
     secondaryKeywords: [
       "prix assurance décennale menuisier",

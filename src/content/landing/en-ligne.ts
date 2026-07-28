@@ -9,7 +9,7 @@ export const enLigne = defineLanding({
   seo: {
     title: "Assurance décennale en ligne : constituer son dossier à distance",
     description:
-      "Préparez et transmettez votre demande d’assurance décennale en ligne : pièces à réunir, étapes du parcours, sécurité des données et limites de la souscription à distance.",
+      "Transmettez votre demande d’assurance décennale en ligne : pièces à réunir, étapes du parcours, sécurité des données et limites de la souscription à distance.",
     primaryKeyword: "assurance décennale en ligne",
     secondaryKeywords: [
       "souscription décennale en ligne",

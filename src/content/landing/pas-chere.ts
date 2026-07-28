@@ -6,7 +6,7 @@ export const pasChere = defineLanding({
   status: "published",
   priority: "P0",
   seo: {
-    title: "Assurance décennale pas chère : réduire sa cotisation sans se fragiliser",
+    title: "Assurance décennale pas chère : baisser sa cotisation",
     description:
       "Payer moins cher sa décennale sans perdre de garanties : leviers réels, fausses économies à éviter et méthode pour comparer deux propositions à périmètre égal.",
     primaryKeyword: "assurance décennale pas chère",

@@ -50,7 +50,7 @@ export const prix = defineLanding({
   seo: {
     title: "Prix assurance décennale : critères de tarification et repères",
     description:
-      "Comprenez comment se calcule le prix d’une assurance décennale : chiffre d’affaires, métier, expérience, sinistralité, franchise, et consultez nos repères par profil.",
+      "Comment se calcule le prix d’une assurance décennale : chiffre d’affaires, métier, expérience, sinistralité, franchise, et nos repères de lecture par profil.",
     primaryKeyword: "prix assurance décennale",
     secondaryKeywords: [
       "tarif décennale",

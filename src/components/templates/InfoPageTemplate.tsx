@@ -8,6 +8,7 @@ import { TableOfContents } from "@/components/content/TableOfContents";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageShell } from "@/components/templates/PageShell";
 import { breadcrumbSchema, faqSchema, jsonLdGraph, webPageSchema } from "@/lib/schema";
+import { formatFrenchDate } from "@/lib/seo";
 import type { InfoPage } from "@/types/content";
 
 interface InfoPageTemplateProps {
@@ -34,6 +35,7 @@ export function InfoPageTemplate({
   width = "narrow",
 }: InfoPageTemplateProps) {
   const tocEntries = page.sections.map((section) => ({ id: section.id, title: section.title }));
+  const modifiedAt = page.editorial?.modifiedAt ?? page.updatedAt;
 
   return (
     <PageShell
@@ -43,6 +45,13 @@ export function InfoPageTemplate({
       hideStickyCta={hideStickyCta}
       width={width}
     >
+      {page.editorial ? null : page.updatedAt ? (
+        <p className="mt-4 text-sm text-ink-600">
+          Dernière mise à jour :{" "}
+          <time dateTime={page.updatedAt}>{formatFrenchDate(page.updatedAt)}</time>
+        </p>
+      ) : null}
+
       {beforeSections}
 
       <TableOfContents entries={tocEntries} />
@@ -87,7 +96,7 @@ export function InfoPageTemplate({
             name: page.seo.title,
             description: page.seo.description,
             path: page.path,
-            ...(page.editorial ? { modifiedAt: page.editorial.modifiedAt } : {}),
+            ...(modifiedAt ? { modifiedAt } : {}),
           }),
           ...(page.faq ? [faqSchema(page.faq)] : []),
         ])}

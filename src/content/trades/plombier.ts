@@ -11,7 +11,7 @@ export const plombier = defineTrade({
   seo: {
     title: "Assurance décennale plombier : prix et devis | DécennaleBTP.fr",
     description:
-      "Plombier, plombier-chauffagiste ou installateur sanitaire : comparez des solutions de RC décennale selon vos installations déclarées, votre expérience et votre chiffre d’affaires.",
+      "Réseaux d’eau, évacuations, sanitaires, salle de bains : comparez des solutions de RC décennale adaptées à vos installations et aux risques d’infiltration.",
     primaryKeyword: "assurance décennale plombier",
     secondaryKeywords: [
       "prix assurance décennale plombier",

@@ -11,7 +11,7 @@ export const plaquiste = defineTrade({
   seo: {
     title: "Assurance décennale plaquiste : prix et devis | DécennaleBTP.fr",
     description:
-      "Plaquiste, plâtrier ou poseur de cloisons sèches : comparez des solutions de RC décennale selon vos activités déclarées, votre expérience et votre chiffre d’affaires.",
+      "Cloisons sèches, doublages, plafonds, isolation intérieure : comparez des solutions de RC décennale adaptées à vos ouvrages de plâtrerie déclarés.",
     primaryKeyword: "assurance décennale plaquiste",
     secondaryKeywords: [
       "prix assurance décennale plaquiste",

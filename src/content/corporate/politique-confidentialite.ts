@@ -8,7 +8,7 @@ export const politiqueConfidentialite = defineInfoPage({
   seo: {
     title: "Politique de confidentialité | DécennaleBTP.fr",
     description:
-      "Quelles données sont collectées lors d’une demande de devis d’assurance décennale, pour quelles finalités, à qui elles sont transmises, combien de temps elles sont conservées et comment exercer vos droits.",
+      "Quelles données sont collectées lors d’une demande de devis d’assurance décennale, pour quelles finalités, à qui elles sont transmises et comment exercer vos droits.",
     primaryKeyword: "politique de confidentialité DécennaleBTP.fr",
     secondaryKeywords: ["RGPD demande de devis décennale", "données personnelles assurance décennale"],
   },

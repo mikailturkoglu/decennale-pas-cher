@@ -9,7 +9,7 @@ export const comparateur = defineLanding({
   seo: {
     title: "Comparateur assurance décennale : demandez plusieurs devis",
     description:
-      "Comparez des propositions de RC décennale adaptées à vos activités BTP. Décrivez votre métier et votre situation, votre demande est étudiée par un professionnel partenaire.",
+      "Comparez des propositions de RC décennale adaptées à vos activités BTP. Décrivez votre métier : votre demande est étudiée par un professionnel partenaire.",
     primaryKeyword: "comparateur assurance décennale",
     secondaryKeywords: [
       "comparatif décennale",

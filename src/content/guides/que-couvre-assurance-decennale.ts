@@ -9,7 +9,7 @@ export const queCouvreAssuranceDecennale = defineGuide({
   seo: {
     title: "Que couvre la garantie décennale ? Dommages, ouvrages, équipements",
     description:
-      "Solidité de l’ouvrage, impropriété à destination, éléments d’équipement : comprenez précisément ce que couvre la garantie décennale et ce qui relève d’autres garanties.",
+      "Solidité de l’ouvrage, impropriété à destination, éléments d’équipement : ce que couvre précisément la garantie décennale et ce qui relève d’autres garanties.",
     primaryKeyword: "que couvre une assurance décennale",
     secondaryKeywords: [
       "travaux couverts par la garantie décennale",

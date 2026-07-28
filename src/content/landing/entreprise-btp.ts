@@ -8,7 +8,7 @@ export const entrepriseBtp = defineLanding({
   seo: {
     title: "Assurance décennale entreprise BTP : multi-activités et salariés",
     description:
-      "Entreprise du bâtiment avec salariés ou plusieurs lots : structurez la déclaration de vos activités, la sous-traitance et vos plafonds de garantie, puis demandez des propositions.",
+      "Entreprise du bâtiment avec salariés ou plusieurs lots : structurez la déclaration de vos activités, la sous-traitance et vos plafonds de garantie décennale.",
     primaryKeyword: "assurance décennale entreprise BTP",
     secondaryKeywords: [
       "décennale société bâtiment",

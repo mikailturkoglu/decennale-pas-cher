@@ -9,7 +9,7 @@ export const documentsDevisAssuranceDecennale = defineGuide({
   seo: {
     title: "Documents pour souscrire une décennale : liste par profil",
     description:
-      "Kbis, relevé de sinistralité, CV, diplômes, chiffre d’affaires : la liste des documents demandés pour une assurance décennale, selon que vous créez, êtes assuré ou résilié.",
+      "Kbis, relevé de sinistralité, CV, diplômes, chiffre d’affaires : les documents demandés pour une assurance décennale, selon que vous créez, êtes assuré ou résilié.",
     primaryKeyword: "documents pour souscrire une décennale",
     secondaryKeywords: [
       "documents devis assurance décennale",

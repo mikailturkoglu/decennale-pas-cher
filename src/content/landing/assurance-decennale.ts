@@ -8,7 +8,7 @@ export const assuranceDecennale = defineLanding({
   seo: {
     title: "Assurance décennale : obligation, garanties et devis | DécennaleBTP.fr",
     description:
-      "Comprenez la garantie décennale des professionnels du bâtiment : obligation légale, travaux couverts, durée, attestation, prix et démarches pour obtenir des propositions.",
+      "La garantie décennale des professionnels du bâtiment : obligation légale, travaux couverts, durée, attestation, prix et démarches pour obtenir des propositions.",
     primaryKeyword: "assurance décennale",
     secondaryKeywords: [
       "garantie décennale",

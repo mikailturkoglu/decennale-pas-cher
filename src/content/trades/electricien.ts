@@ -11,7 +11,7 @@ export const electricien = defineTrade({
   seo: {
     title: "Assurance décennale électricien : prix et devis | DécennaleBTP.fr",
     description:
-      "Électricien du bâtiment, courants faibles ou photovoltaïque : comparez des solutions de RC décennale selon vos installations déclarées, votre expérience et votre chiffre d’affaires.",
+      "Installation électrique, tableau, courants faibles, photovoltaïque : comparez des solutions de RC décennale adaptées aux activités que vous déclarez.",
     primaryKeyword: "assurance décennale électricien",
     secondaryKeywords: [
       "prix assurance décennale électricien",

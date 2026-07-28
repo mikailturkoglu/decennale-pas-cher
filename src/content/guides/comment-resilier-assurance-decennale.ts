@@ -9,7 +9,7 @@ export const commentResilierAssuranceDecennale = defineGuide({
   seo: {
     title: "Résilier son assurance décennale : délais, motifs et continuité",
     description:
-      "Résiliation à l’échéance, changement de situation, augmentation de tarif : les cas de résiliation d’une assurance décennale et comment éviter toute interruption de garantie.",
+      "Résiliation à l’échéance, changement de situation, hausse de tarif : les cas de résiliation d’une assurance décennale et comment éviter une interruption de garantie.",
     primaryKeyword: "comment résilier une assurance décennale",
     secondaryKeywords: [
       "résiliation assurance décennale",

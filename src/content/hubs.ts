@@ -69,7 +69,7 @@ export const situationsHub = defineInfoPage({
   name: "Situations",
   status: "published",
   seo: {
-    title: "Assurance décennale : votre situation de souscription | DécennaleBTP.fr",
+    title: "Assurance décennale selon votre situation | DécennaleBTP.fr",
     description:
       "Création d’entreprise, absence d’antécédent, résiliation, non-paiement, sinistre, chantier commencé : les démarches et les documents attendus selon votre situation.",
     primaryKeyword: "situations assurance décennale",
@@ -171,7 +171,7 @@ export function tradeCategoryInfoPage(slug: TradeCategorySlug): InfoPage {
     name: category.name,
     status: "published",
     seo: {
-      title: `${category.title} | DécennaleBTP.fr`,
+      title: `${category.seoTitle} | DécennaleBTP.fr`,
       description: category.description,
       primaryKeyword: `assurance décennale ${category.shortName.toLowerCase()}`,
       secondaryKeywords: ["activités à déclarer", "garantie décennale par métier"],

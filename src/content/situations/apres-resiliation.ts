@@ -8,7 +8,7 @@ export const apresResiliation = defineSituation({
   seo: {
     title: "Assurance décennale après résiliation : comment se réassurer",
     description:
-      "Entreprise du BTP résiliée par son assureur : identifiez le motif exact, comprenez ce qui est examiné et constituez un dossier étudiable par un partenaire spécialisé.",
+      "Entreprise du BTP résiliée par son assureur : identifiez le motif exact, ce qui est examiné et comment constituer un dossier étudiable par un partenaire.",
     primaryKeyword: "assurance décennale après résiliation",
     secondaryKeywords: [
       "décennale entreprise résiliée",

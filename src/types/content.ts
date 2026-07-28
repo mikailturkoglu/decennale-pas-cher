@@ -15,6 +15,11 @@ export interface ExpertReference {
   id: string;
   name: string;
   role: string;
+  /**
+   * Libellé court utilisé dans les titres et fils d'Ariane tant que l'identité
+   * n'est pas renseignée : le rôle complet est trop long pour un title.
+   */
+  shortRole: string;
   /** Chemin du profil sur le site, avec slash final. */
   profilePath: string;
   /** Numéro ORIAS, uniquement si la personne est réellement immatriculée. */
@@ -198,7 +203,13 @@ export interface InfoPage {
   faq?: FaqItem[];
   relatedPaths?: string[];
   sources?: SourceReference[];
+  /**
+   * Signature éditoriale complète, réservée aux pages de fond (méthode,
+   * profils d'experts). Les pages légales n'ont pas d'auteur à mettre en avant.
+   */
   editorial?: EditorialMeta;
+  /** Date de dernière mise à jour, affichée sur toute page sans signature éditoriale. */
+  updatedAt?: string;
   breadcrumb: BreadcrumbSegment[];
 }
 
