@@ -21,6 +21,15 @@ export function absoluteUrl(path: string): string {
   return `${siteConfig.url}${normalizePath(path)}`;
 }
 
+/**
+ * Image Open Graph par défaut, générée par `src/app/opengraph-image.tsx`.
+ *
+ * Le slash final est obligatoire : avec `trailingSlash: true`, la route de
+ * métadonnée répond en 308 sans lui, ce qui ferait suivre une redirection à
+ * chaque robot social.
+ */
+export const DEFAULT_OG_IMAGE = absoluteUrl("/opengraph-image");
+
 export interface BuildMetadataInput {
   seo: SeoFields;
   /** Chemin réel de la page, utilisé si `seo.canonicalPath` est absent. */
@@ -46,7 +55,7 @@ export function buildMetadata({
 }: BuildMetadataInput): Metadata {
   const canonicalPath = normalizePath(seo.canonicalPath ?? path);
   const canonical = absoluteUrl(canonicalPath);
-  const ogImage = seo.ogImage ?? `${absoluteUrl(canonicalPath)}opengraph-image`;
+  const ogImage = seo.ogImage ?? DEFAULT_OG_IMAGE;
 
   return {
     title: seo.title,

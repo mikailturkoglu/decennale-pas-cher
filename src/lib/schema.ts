@@ -1,5 +1,5 @@
 import { businessModel, siteConfig } from "@/data/site";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { isPlaceholder } from "@/lib/placeholders";
 import type { ExpertReference, FaqItem, SourceReference } from "@/types/content";
 import type { BreadcrumbSegment } from "@/types/seo";
@@ -109,7 +109,7 @@ export function articleSchema(input: {
     datePublished: input.publishedAt,
     dateModified: input.modifiedAt,
     inLanguage: siteConfig.locale,
-    image: `${absoluteUrl(input.path)}opengraph-image`,
+    image: DEFAULT_OG_IMAGE,
     author: personSchema(input.author) ?? { "@id": ORGANIZATION_ID },
     reviewedBy: input.reviewer ? personSchema(input.reviewer) : undefined,
     publisher: { "@id": ORGANIZATION_ID },

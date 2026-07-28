@@ -206,6 +206,7 @@ export const footerNavigation: readonly { title: string; links: NavLink[] }[] = 
       { label: "Nos partenaires", path: "/partenaires/" },
       { label: "Comité de relecture", path: "/experts/" },
       { label: "Contact", path: "/contact/" },
+      { label: "Plan du site", path: "/plan-du-site/" },
     ],
   },
   {

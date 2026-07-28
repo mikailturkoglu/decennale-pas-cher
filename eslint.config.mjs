@@ -1,14 +1,16 @@
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import coreWebVitals from "eslint-config-next/core-web-vitals";
+import typescriptConfig from "eslint-config-next/typescript";
 
-import { FlatCompat } from "@eslint/eslintrc";
-
-const compat = new FlatCompat({
-  baseDirectory: dirname(fileURLToPath(import.meta.url)),
-});
-
+/**
+ * Configuration ESLint.
+ *
+ * `eslint-config-next` 16 expose directement des configurations plates : elles
+ * sont importées telles quelles, sans passer par `FlatCompat`, qui échoue sur les
+ * références circulaires des plugins React.
+ */
 const config = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...coreWebVitals,
+  ...typescriptConfig,
   {
     rules: {
       "@typescript-eslint/consistent-type-imports": [

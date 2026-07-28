@@ -178,6 +178,30 @@ export interface GuidePage extends BaseContent {
   primaryCommercialPath: string;
 }
 
+/**
+ * Page institutionnelle, légale ou outil.
+ *
+ * Ces pages ne visent pas une requête commerciale : elles portent la
+ * transparence réglementaire et la preuve d'expertise. Elles sont identifiées
+ * par un chemin complet plutôt que par un slug, car elles peuvent être
+ * imbriquées (`/outils/checklist-dossier-decennale/`).
+ */
+export interface InfoPage {
+  type: "info";
+  path: string;
+  name: string;
+  status: ContentStatus;
+  seo: SeoFields;
+  h1: string;
+  intro: string;
+  sections: ContentSection[];
+  faq?: FaqItem[];
+  relatedPaths?: string[];
+  sources?: SourceReference[];
+  editorial?: EditorialMeta;
+  breadcrumb: BreadcrumbSegment[];
+}
+
 export type GuideCategorySlug =
   | "comprendre"
   | "souscrire"
@@ -190,4 +214,5 @@ export type AnyContentPage =
   | TradePage
   | SituationPage
   | LandingPage
-  | GuidePage;
+  | GuidePage
+  | InfoPage;

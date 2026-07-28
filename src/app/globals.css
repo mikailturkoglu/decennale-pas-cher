@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/**
+ * Design system DécennaleBTP.fr
+ *
+ * Palette sobre, orientée sérieux et lisibilité. Les usages sont contraints :
+ * - `action` porte les liens et boutons principaux (5,0:1 sur blanc) ;
+ * - `accent` (orange chantier) n'est jamais utilisé comme couleur de texte sur
+ *   fond clair (contraste insuffisant) : uniquement filets, pictogrammes et
+ *   texte sur fond marine (7,8:1) ;
+ * - `success` sert aux confirmations (4,7:1 sur blanc) ;
+ * - `ink` est la couleur de texte par défaut.
+ *
+ * Aucune police n'est téléchargée : la pile système supprime une requête
+ * réseau sur le chemin critique du rendu (voir README).
+ */
+@theme {
+  --color-navy: #0b1f33;
+  --color-navy-700: #16324f;
+  --color-navy-600: #1f4468;
+  --color-action: #1668e8;
+  --color-action-700: #114fb0;
+  --color-action-50: #eaf1fd;
+  --color-accent: #f59e0b;
+  --color-accent-50: #fef6e7;
+  --color-success: #16845b;
+  --color-success-50: #e8f5ef;
+  --color-danger: #b42318;
+  --color-danger-50: #fdeceb;
+  --color-surface: #f6f8fb;
+  --color-ink: #152033;
+  --color-ink-600: #4a5568;
+  --color-line: #d9e0e8;
+
+  --font-sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif;
+
+  --radius-card: 0.75rem;
+
+  --shadow-card: 0 1px 2px rgb(11 31 51 / 0.06), 0 1px 3px rgb(11 31 51 / 0.1);
+  --shadow-raised: 0 4px 16px rgb(11 31 51 / 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Compense la hauteur de l'en-tête collant lors des sauts d'ancre. */
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-navy);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  /* Cible de focus homogène et toujours visible (WCAG 2.2 AA). */
+  :focus-visible {
+    outline: 3px solid var(--color-action);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Les ancres de sommaire ne doivent pas être masquées par l'en-tête. */
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /**
+   * Contenu rédactionnel long : appliqué aux blocs de paragraphes générés
+   * depuis les collections de contenu.
+   */
+  .rich-text > * + * {
+    margin-top: 1rem;
+  }
+
+  .rich-text a {
+    color: var(--color-action-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Tableaux larges : défilement horizontal annoncé et focalisable au clavier. */
+  .table-scroll {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+}

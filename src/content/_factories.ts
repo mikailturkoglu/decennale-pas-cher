@@ -7,11 +7,13 @@ import { findTradeByValue } from "@/data/trades";
 import type {
   EditorialMeta,
   GuidePage,
+  InfoPage,
   LandingPage,
   PriceBand,
   SituationPage,
   TradePage,
 } from "@/types/content";
+import { normalizePath } from "@/lib/seo";
 
 /**
  * Fabriques de contenu.
@@ -62,7 +64,10 @@ export function indicativeBand(input: {
   };
 }
 
-type TradeInput = Omit<TradePage, "type" | "breadcrumb" | "sources" | "editorial" | "slug"> & {
+type TradeInput = Omit<
+  TradePage,
+  "type" | "breadcrumb" | "sources" | "editorial" | "slug" | "formTradeValue"
+> & {
   /** Valeur du registre des métiers (ex. "macon"). */
   tradeValue: string;
   /** Sources spécifiques ajoutées au socle commun. */
@@ -184,6 +189,36 @@ export function defineGuide(input: GuideInput): GuidePage {
       { name: "Accueil", path: "/" },
       { name: "Guides", path: "/guides/" },
       { name: rest.title },
+    ],
+  };
+}
+
+type InfoInput = Omit<InfoPage, "type" | "breadcrumb" | "sources" | "editorial"> & {
+  sources?: SourceKey[];
+  /** Segments intermédiaires du fil d'Ariane (hors accueil et page courante). */
+  breadcrumbParents?: { name: string; path: string }[];
+  /** Renseigné uniquement lorsque la page est signée et relue. */
+  editorial?: Partial<EditorialMeta>;
+};
+
+export function defineInfoPage(input: InfoInput): InfoPage {
+  const {
+    sources = [],
+    breadcrumbParents = [],
+    editorial: editorialOverrides,
+    ...rest
+  } = input;
+
+  return {
+    ...rest,
+    type: "info",
+    path: normalizePath(rest.path),
+    ...(sources.length > 0 ? { sources: [...new Set(sources)].map((key) => SOURCES[key]) } : {}),
+    ...(editorialOverrides ? { editorial: editorial(editorialOverrides) } : {}),
+    breadcrumb: [
+      { name: "Accueil", path: "/" },
+      ...breadcrumbParents,
+      { name: rest.name },
     ],
   };
 }
