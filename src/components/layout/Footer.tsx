@@ -12,7 +12,12 @@ export function Footer() {
 
   return (
     <footer className="mt-16 border-t-4 border-accent bg-navy text-white">
-      <Container className="py-12">
+      {/*
+        La réserve basse laisse passer la barre d'action fixe des petits écrans :
+        sans elle, ses dernières lignes — dont le réglage des cookies — resteraient
+        sous la barre, donc inatteignables.
+      */}
+      <Container className="pt-12 pb-32 lg:pb-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {footerNavigation.map((column) => (
             <nav key={column.title} aria-label={column.title}>

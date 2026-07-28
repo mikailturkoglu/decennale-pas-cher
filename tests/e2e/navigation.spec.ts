@@ -24,21 +24,41 @@ test.describe("navigation principale", () => {
 
     await page.goto("/");
 
-    const trigger = page.getByRole("group").filter({ hasText: "Métiers" }).first();
-    const summary = page.locator("summary", { hasText: "Métiers" }).first();
-    await summary.click();
+    // Le pied de page liste aussi les métiers : les repères restent dans l'en-tête.
+    const nav = page.getByRole("navigation", { name: "Navigation principale" });
+    const summary = nav.locator("summary").filter({ hasText: "Métiers" });
+    const maconLink = nav.getByRole("link", { name: "Maçon", exact: true });
 
-    const maconLink = page.getByRole("link", { name: "Maçon", exact: true });
+    await expect(maconLink).toBeHidden();
+    await summary.click();
     await expect(maconLink).toBeVisible();
 
+    // Révocable sans souris ni déplacement du focus (WCAG 1.4.13).
     await page.keyboard.press("Escape");
     await expect(maconLink).toBeHidden();
     await expect(summary).toBeFocused();
 
     await summary.click();
-    await expect(trigger).toBeVisible();
     await maconLink.click();
     await expect(page).toHaveURL(/\/assurance-decennale-macon\/$/);
+  });
+
+  test("le mégamenu de bureau reste ouvert quand la souris s’en éloigne", async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== "desktop", "Mégamenu réservé aux écrans larges.");
+
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Navigation principale" });
+    const summary = nav.locator("summary").filter({ hasText: "Métiers" });
+    const maconLink = nav.getByRole("link", { name: "Maçon", exact: true });
+
+    // Survol puis clic : le panneau est épinglé, il ne doit pas se replier dès
+    // que le pointeur descend vers les liens.
+    await summary.hover();
+    await summary.click();
+    await page.mouse.move(0, 400);
+    await expect(maconLink).toBeVisible();
   });
 
   test("le menu mobile s’ouvre, se replie et mène au métier", async ({ page }, testInfo) => {
@@ -51,10 +71,12 @@ test.describe("navigation principale", () => {
     await toggle.click();
     await expect(toggle).toHaveAttribute("aria-expanded", "true");
 
-    await page.locator("summary", { hasText: "Métiers" }).first().click();
-    await page.getByRole("link", { name: "Maçon", exact: true }).click();
+    const nav = page.getByRole("navigation", { name: /Navigation principale \(mobile\)/ });
+    await nav.locator("summary").filter({ hasText: "Métiers" }).click();
+    await nav.getByRole("link", { name: "Maçon", exact: true }).click();
 
     await expect(page).toHaveURL(/\/assurance-decennale-macon\/$/);
+    // Le panneau se referme de lui-même : sinon il masquerait la page atteinte.
     await expect(toggle).toHaveAttribute("aria-expanded", "false");
   });
 
@@ -89,6 +111,8 @@ test.describe("navigation principale", () => {
     // s'il précède tout le reste de l'en-tête.
     await page.locator("body").press("Tab");
 
+    // Le panneau de consentement ne doit pas détourner la tabulation : il n'est
+    // pas modal, il s'affiche donc sans prendre le focus.
     const skipLink = page.getByRole("link", { name: /aller au contenu/i });
     await expect(skipLink).toBeFocused();
     // Masqué visuellement, il doit redevenir visible dès qu'il reçoit le focus.

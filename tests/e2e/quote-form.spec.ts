@@ -65,8 +65,10 @@ async function fillNeeds(page: Page) {
 async function fillContact(page: Page) {
   await page.getByLabel("Raison sociale").fill("Maçonnerie de démonstration");
   await page.getByLabel("Prénom").fill("Test");
-  await page.getByLabel("Nom", { exact: true }).fill("Démonstration");
-  await page.getByLabel("Téléphone").fill("0612345678");
+  // Par le nom accessible : le libellé porte un astérisque décoratif.
+  await page.getByRole("textbox", { name: "Nom", exact: true }).fill("Démonstration");
+  // Le canal de contact propose aussi une option « Téléphone » : on cible la saisie.
+  await page.getByRole("textbox", { name: "Téléphone" }).fill("0612345678");
   await page.getByLabel("Adresse électronique").fill("contact@example.fr");
   await radio(page, /canal de contact/i, "Téléphone");
   await page.getByLabel("Créneau de rappel souhaité").selectOption("matin");
@@ -75,9 +77,12 @@ async function fillContact(page: Page) {
 test.describe("tunnel de devis", () => {
   test("prérempli le métier depuis la page métier", async ({ page }) => {
     await page.goto("/assurance-decennale-macon/");
-    await page.getByRole("link", { name: /Comparer/ }).first().click();
 
-    await expect(page).toHaveURL(/\/devis-assurance-decennale\//);
+    // Le CTA de la page métier, et non celui de l'en-tête : lui seul porte le
+    // préremplissage.
+    await page.getByRole("link", { name: "Comparer pour un maçon" }).first().click();
+
+    await expect(page).toHaveURL(/\/devis-assurance-decennale\/\?/);
     await expect(page.getByLabel("Votre métier principal")).toHaveValue("macon");
   });
 
@@ -148,12 +153,19 @@ test.describe("tunnel de devis", () => {
     await fillNeeds(page);
     await page.getByRole("button", { name: "Continuer" }).click();
     await fillContact(page);
-    await page.getByLabel(/traitement de ma demande/i).check();
-    await page.getByLabel(/transmission/i).check();
+    // Les deux consentements nécessaires au traitement, séparés et non précochés.
+    await page.getByLabel(/traiter ma demande de devis/i).check();
+    await page.getByLabel(/transmise à un ou plusieurs professionnels/i).check();
     await page.getByRole("button", { name: "Continuer" }).click();
 
-    await expect(page.getByRole("heading", { name: "Vérifiez votre demande" })).toBeVisible();
-    await expect(page.getByText("Maçon", { exact: false }).first()).toBeVisible();
+    // Le récapitulatif s'intercale toujours avant l'envoi : la dernière étape de
+    // saisie ne doit jamais soumettre directement la demande.
+    const recap = page.getByRole("region", { name: "Vérifiez votre demande" });
+    await expect(recap).toBeVisible();
+    await expect(page).toHaveURL(/\/devis-assurance-decennale\/$/);
+    // Le récapitulatif affiche les libellés, pas les valeurs techniques du formulaire.
+    await expect(recap.getByText("Maçon", { exact: true })).toBeVisible();
+    await expect(recap.getByText("contact@example.fr")).toBeVisible();
 
     await page.getByRole("button", { name: "Envoyer ma demande" }).click();
 

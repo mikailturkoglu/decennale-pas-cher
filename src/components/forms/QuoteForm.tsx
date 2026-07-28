@@ -408,12 +408,19 @@ export function QuoteForm({ defaults, turnstileSiteKey }: QuoteFormProps) {
             </Button>
           ) : null}
 
+          {/*
+            Les clés distinctes sont indispensables : sans elles, React réutilise
+            le même élément `button` et se contente d'en changer le `type`. Le
+            clic sur « Continuer » de la dernière étape de saisie se poursuivrait
+            alors sur un bouton devenu `submit`, envoyant la demande sans que le
+            récapitulatif ait été relu.
+          */}
           {enhanced && step < REVIEW_STEP ? (
-            <Button size="lg" onClick={goNext}>
+            <Button key="etape-suivante" size="lg" onClick={goNext}>
               Continuer
             </Button>
           ) : (
-            <Button type="submit" size="lg" disabled={pending}>
+            <Button key="envoi" type="submit" size="lg" disabled={pending}>
               {pending ? "Envoi en cours…" : "Envoyer ma demande"}
             </Button>
           )}

@@ -154,6 +154,11 @@ npm run audit:seo      # audit SEO du HTML construit
 npm run check          # typecheck + lint + tests + contrôle de pré-build
 ```
 
+`npm run check` tolère les placeholders réglementaires, afin de rester exploitable au quotidien
+tant que le porteur de projet n'a pas fourni ses informations. Il échoue en revanche sur toute
+formulation commerciale interdite. Le garde-fou strict est le build de production, qui refuse le
+moindre placeholder résiduel.
+
 Tant que les informations réglementaires ne sont pas fournies, le build local exige la tolérance
 explicite des placeholders :
 
@@ -429,8 +434,18 @@ npx playwright test --project=mobile
 
 Les tests de bout en bout s'exécutent sur un **build de production** servi par `next start`, et
 jamais sur le serveur de développement : c'est la seule façon de vérifier le HTML réellement
-livré, les en-têtes et les redirections. Le serveur n'est jamais réutilisé d'une exécution à
-l'autre, pour ne pas tester un build obsolète.
+livré, les en-têtes et les redirections. Le serveur est reconstruit à chaque exécution, pour ne
+jamais tester un build obsolète.
+
+Pour itérer rapidement sur un serveur déjà lancé, `E2E_REUSE_SERVER=1` évite la reconstruction.
+À n'utiliser qu'en connaissance de cause : un serveur laissé actif pendant un `npm run build`
+sert des fragments qui n'existent plus, ce qui produit des échecs sans aucun rapport avec le code
+testé.
+
+```bash
+npx next start --port 3200                       # dans un terminal
+E2E_REUSE_SERVER=1 E2E_PORT=3200 npx playwright test   # dans un autre
+```
 
 ## 19. Contrôle SEO avant mise en ligne
 

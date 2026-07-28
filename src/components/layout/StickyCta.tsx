@@ -14,8 +14,8 @@ function buildHref(query?: Record<string, string>): string {
 /**
  * Barre d'action fixe sur mobile.
  *
- * Rendue côté serveur, sans JavaScript. Un espaceur est ajouté en bas de page
- * par le gabarit afin qu'elle ne masque jamais la fin du contenu.
+ * Rendue côté serveur, sans JavaScript. Le pied de page réserve la hauteur
+ * correspondante afin que la barre ne masque jamais la fin du document.
  */
 export function StickyCta({ query, label = "Comparer les offres" }: StickyCtaProps) {
   return (

@@ -30,6 +30,8 @@ import {
 export function ConsentManager() {
   const [visible, setVisible] = useState(false);
   const [details, setDetails] = useState(false);
+  /** Vrai lorsque le panneau a été rouvert à la demande du visiteur. */
+  const [requested, setRequested] = useState(false);
   const [draft, setDraft] = useState<ConsentState>(DEFAULT_CONSENT);
   const headingId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -53,22 +55,31 @@ export function ConsentManager() {
     function onOpen() {
       setVisible(true);
       setDetails(true);
+      setRequested(true);
     }
     window.addEventListener(OPEN_CONSENT_EVENT, onOpen);
     return () => window.removeEventListener(OPEN_CONSENT_EVENT, onOpen);
   }, []);
 
+  /*
+   * Le focus n'est déplacé que lorsque le visiteur a lui-même demandé à revoir
+   * son choix depuis le pied de page : il doit alors retrouver le panneau. À la
+   * première visite, le panneau s'affiche sans voler le focus, sans quoi il
+   * passerait devant le lien d'évitement et devant le début du document — le
+   * panneau n'est pas modal, rien ne justifie de détourner la tabulation.
+   */
   useEffect(() => {
-    if (visible) {
+    if (visible && requested) {
       panelRef.current?.focus();
     }
-  }, [visible]);
+  }, [visible, requested]);
 
   const decide = useCallback((state: ConsentState) => {
     writeConsentCookie(state);
     setDraft(state);
     setVisible(false);
     setDetails(false);
+    setRequested(false);
   }, []);
 
   if (!visible) return null;

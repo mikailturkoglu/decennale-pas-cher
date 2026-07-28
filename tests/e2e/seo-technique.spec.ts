@@ -215,7 +215,12 @@ test.describe("consentement", () => {
     await page.goto("/");
     await page.getByRole("button", { name: "Tout refuser" }).click();
 
-    await page.getByRole("button", { name: /cookies/i }).last().click();
-    await expect(page.getByRole("dialog", { name: /Cookies/i })).toBeVisible();
+    // Le pied de page reste atteignable malgré la barre d'action fixe des petits écrans.
+    await page.getByRole("button", { name: "Gérer les cookies" }).click();
+
+    const panel = page.getByRole("dialog", { name: /Cookies/i });
+    await expect(panel).toBeVisible();
+    // Rouvert à la demande, le panneau reçoit le focus : sinon le visiteur le perdrait.
+    await expect(panel).toBeFocused();
   });
 });

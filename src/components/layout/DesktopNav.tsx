@@ -18,9 +18,20 @@ import { primaryNavigation } from "@/data/navigation";
  * focus sur le déclencheur, et fermeture au clic ou au focus extérieur. Le
  * panneau est ainsi révocable sans déplacer le focus, comme l'exige le critère
  * WCAG 1.4.13.
+ *
+ * Survol et clic se coordonnent : un panneau ouvert par le survol se referme
+ * quand la souris s'éloigne, mais un clic l'épingle et il faut alors un second
+ * clic, Échap ou un clic extérieur pour le replier.
  */
 export function DesktopNav() {
   const navRef = useRef<HTMLElement>(null);
+  /**
+   * Panneau ouvert par le seul survol, donc pas encore « épinglé » par un clic.
+   * Sans cette distinction, le survol ouvrirait le panneau et le clic qui suit
+   * le refermerait aussitôt : le menu se dévoilerait puis disparaîtrait sous le
+   * curseur.
+   */
+  const hoverOpened = useRef<HTMLDetailsElement | null>(null);
 
   function closeAll(except?: Element) {
     const nav = navRef.current;
@@ -28,6 +39,7 @@ export function DesktopNav() {
     for (const details of nav.querySelectorAll<HTMLDetailsElement>("details[open]")) {
       if (details !== except) details.open = false;
     }
+    if (hoverOpened.current && hoverOpened.current !== except) hoverOpened.current = null;
   }
 
   useEffect(() => {
@@ -38,6 +50,7 @@ export function DesktopNav() {
       const open = nav?.querySelector<HTMLDetailsElement>("details[open]");
       if (!open) return;
       open.open = false;
+      hoverOpened.current = null;
       if (restoreFocus) open.querySelector("summary")?.focus();
     }
 
@@ -76,17 +89,30 @@ export function DesktopNav() {
             className="static"
             onPointerEnter={(event) => {
               const details = hoverTarget(event);
-              if (!details) return;
+              if (!details || details.open) return;
               details.open = true;
               closeAll(details);
+              hoverOpened.current = details;
             }}
             onPointerLeave={(event) => {
               const details = hoverTarget(event);
-              if (details) details.open = false;
+              // Un panneau épinglé par un clic reste ouvert lorsque la souris sort.
+              if (!details || hoverOpened.current !== details) return;
+              details.open = false;
+              hoverOpened.current = null;
             }}
           >
             <details>
               <summary
+                onClick={(event) => {
+                  // Le panneau était déjà déplié par le survol : le clic l'épingle
+                  // au lieu de le replier.
+                  const details = event.currentTarget.parentElement;
+                  if (!(details instanceof HTMLDetailsElement)) return;
+                  if (hoverOpened.current !== details) return;
+                  event.preventDefault();
+                  hoverOpened.current = null;
+                }}
                 className="inline-flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded-lg px-3 py-2 font-semibold text-navy hover:bg-surface [&::-webkit-details-marker]:hidden"
               >
                 {section.label}

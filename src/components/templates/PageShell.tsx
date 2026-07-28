@@ -21,8 +21,9 @@ interface PageShellProps {
 /**
  * Structure commune à toutes les pages de contenu.
  *
- * Elle garantit un fil d'Ariane, un H1 unique, une largeur de lecture maîtrisée
- * et l'espace nécessaire sous la barre d'action mobile.
+ * Elle garantit un fil d'Ariane, un H1 unique et une largeur de lecture
+ * maîtrisée. La réserve laissée à la barre d'action mobile est portée par le
+ * pied de page, qui est le seul élément qu'elle peut recouvrir.
  */
 export function PageShell({
   breadcrumb,
@@ -41,13 +42,7 @@ export function PageShell({
         {lead ? <p className="mt-4 text-lg text-ink-600">{lead}</p> : null}
         {children}
       </Container>
-      {hideStickyCta ? null : (
-        <>
-          {/* Espaceur : la barre fixe ne doit jamais recouvrir la fin du contenu. */}
-          <div aria-hidden="true" className="h-20 lg:hidden" />
-          <StickyCta {...(quoteQuery ? { query: quoteQuery } : {})} />
-        </>
-      )}
+      {hideStickyCta ? null : <StickyCta {...(quoteQuery ? { query: quoteQuery } : {})} />}
     </>
   );
 }
