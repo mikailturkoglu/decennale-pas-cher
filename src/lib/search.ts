@@ -26,7 +26,17 @@ export function searchTokens(query: string): string[] {
     .filter((token) => token.length > 1);
 }
 
-/** Vrai lorsque tous les mots recherchés figurent dans la chaîne normalisée. */
+/**
+ * Vrai lorsque tous les mots recherchés figurent dans la chaîne normalisée.
+ *
+ * Le pluriel est traité de façon minimale : « cloisons » doit trouver
+ * « cloison ». Une racinisation complète du français serait disproportionnée
+ * ici, et rendrait les résultats moins prévisibles.
+ */
 export function matchesTokens(haystack: string, tokens: string[]): boolean {
-  return tokens.every((token) => haystack.includes(token));
+  return tokens.every((token) => {
+    if (haystack.includes(token)) return true;
+    const singular = token.replace(/(?:aux|x|s)$/, "");
+    return singular.length > 2 && haystack.includes(singular);
+  });
 }

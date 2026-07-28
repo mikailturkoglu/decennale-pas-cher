@@ -31,6 +31,19 @@ import {
 
 const enumFrom = (options: Parameters<typeof valuesOf>[0]) => z.enum(valuesOf(options));
 
+/**
+ * Liste déroulante facultative.
+ *
+ * Un `<select>` non renseigné envoie une chaîne vide, jamais `undefined` : sans
+ * cette conversion, un champ facultatif laissé vide bloquerait l'étape.
+ */
+const optionalEnumFrom = (options: Parameters<typeof valuesOf>[0]) =>
+  z
+    .enum(valuesOf(options))
+    .optional()
+    .or(z.literal(""))
+    .transform((value) => (value === "" ? undefined : value));
+
 const yesNo = enumFrom(yesNoOptions);
 
 /** Numéro français, fixe ou mobile, avec ou sans indicatif international. */
@@ -123,7 +136,7 @@ export const insuranceStepSchema = z
     insuredYears: enumFrom(insuredYearsOptions),
     coverageGap: yesNo,
     terminated: yesNo,
-    terminationReason: z.enum(valuesOf(terminationReasonOptions)).optional(),
+    terminationReason: optionalEnumFrom(terminationReasonOptions),
     claimsCount: enumFrom(claimsCountOptions),
     claimsDetail: optionalText(1000),
   })
@@ -175,7 +188,7 @@ export const contactStepSchema = z.object({
 export const leadMetaSchema = z.object({
   sourcePage: z.string().trim().max(200).default("/devis-assurance-decennale/"),
   /** Situation déclarée en amont : sert au préremplissage et au routage interne. */
-  situation: z.enum(valuesOf(situationOptions)).optional(),
+  situation: optionalEnumFrom(situationOptions),
   /** Champ leurre : toute valeur non vide révèle un robot. */
   honeypot: z.string().max(0, "Requête rejetée.").optional().default(""),
   captchaToken: z.string().trim().max(2000).optional(),

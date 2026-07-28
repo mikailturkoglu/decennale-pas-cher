@@ -245,6 +245,7 @@ export const terrassier = defineTrade({
   ],
   relatedTradeSlugs: [
     "assurance-decennale-macon",
+    "assurance-decennale-etancheur",
     "assurance-decennale-vrd",
     "assurance-decennale-demolisseur",
   ],

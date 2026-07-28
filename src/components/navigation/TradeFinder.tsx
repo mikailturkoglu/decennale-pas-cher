@@ -56,7 +56,7 @@ export function TradeFinder({ trades, categories, publishedSlugs }: TradeFinderP
   return (
     <div className="mt-6 rounded-card border border-line bg-surface p-5">
       <label htmlFor={inputId} className="block font-semibold text-navy">
-        Trouver mon métier
+        Rechercher une activité
       </label>
       <p id={`${inputId}-hint`} className="mt-1 text-sm text-ink-600">
         Saisissez votre activité, même approximativement : « maçonnerie », « toiture-terrasse »,

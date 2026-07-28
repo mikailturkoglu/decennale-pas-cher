@@ -122,7 +122,13 @@ export const tradeRegistry: readonly TradeRegistryEntry[] = [
     ["sanitaire", "douche"],
   ),
   entry("cuisiniste", "Cuisiniste", "amenagement-finitions", "P2", ["cuisine"]),
-  entry("plaquiste", "Plaquiste", "amenagement-finitions", "P0", ["plâtrerie", "cloison", "plaque de plâtre"]),
+  entry("plaquiste", "Plaquiste", "amenagement-finitions", "P0", [
+    "plâtrerie",
+    "cloison sèche",
+    "doublage",
+    "plaque de plâtre",
+    "faux plafond",
+  ]),
   entry("serrurier-metallier", "Serrurier-métallier", "amenagement-finitions", "P1", [
     "métallerie",
     "garde-corps",
