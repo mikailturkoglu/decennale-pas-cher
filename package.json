@@ -1,0 +1,41 @@
+{
+  "name": "decennalebtp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DécennaleBTP.fr — mise en relation et information sur l'assurance responsabilité civile décennale des professionnels du BTP.",
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/prebuild-check.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "audit:seo": "node scripts/seo-audit.mjs",
+    "check": "npm run typecheck && npm run lint && npm run test && ALLOW_BLOCKING_PLACEHOLDERS=true node scripts/prebuild-check.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.12",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
+    "@playwright/test": "1.55.1",
+    "@tailwindcss/postcss": "4.1.14",
+    "@types/node": "22.18.6",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.36.0",
+    "eslint-config-next": "16.2.12",
+    "tailwindcss": "4.1.14",
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
