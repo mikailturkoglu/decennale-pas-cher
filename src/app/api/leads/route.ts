@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { siteConfig } from "@/data/site";
 import { auditTrace, dispatchLead, type LeadRecord } from "@/lib/leads/dispatch";
+import { ensureEmailSender } from "@/lib/leads/email";
 import { scoreLead } from "@/lib/lead-scoring";
 import {
   createLeadReference,
@@ -74,6 +75,7 @@ export async function POST(request: Request) {
     score: scoreLead(lead),
   };
 
+  ensureEmailSender();
   const results = await dispatchLead(record);
 
   // Journal technique sans donnée personnelle.

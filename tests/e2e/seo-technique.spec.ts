@@ -171,11 +171,24 @@ test.describe("rendu serveur", () => {
 });
 
 test.describe("consentement", () => {
-  test("aucun traceur n’est chargé avant un choix explicite", async ({ page }) => {
+  test("le panneau cookies s’affiche à la première visite", async ({ page }) => {
     await page.goto("/");
 
     await expect(page.getByRole("dialog", { name: /Cookies/i })).toBeVisible();
-    expect(await page.evaluate(() => "dataLayer" in window)).toBe(false);
+  });
+
+  test("gtag est chargé immédiatement", async ({ page }) => {
+    await page.goto("/");
+
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            typeof (window as Window & { gtag?: unknown }).gtag === "function" ||
+            Boolean(document.querySelector('script[src*="googletagmanager.com/gtag"]')),
+        ),
+      )
+      .toBe(true);
   });
 
   test("« Tout accepter » et « Tout refuser » sont présentés au même niveau", async ({ page }) => {
@@ -191,24 +204,21 @@ test.describe("consentement", () => {
     expect(Math.abs(acceptBox!.height - refuseBox!.height)).toBeLessThan(4);
   });
 
-  test("un refus ferme le panneau sans activer la mesure", async ({ page }) => {
+  test("un refus ferme le panneau", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Tout refuser" }).click();
 
     await expect(page.getByRole("dialog", { name: /Cookies/i })).toBeHidden();
-    expect(await page.evaluate(() => "dataLayer" in window)).toBe(false);
 
     await page.reload();
     await expect(page.getByRole("dialog", { name: /Cookies/i })).toBeHidden();
   });
 
-  test("une acceptation initialise la couche de mesure", async ({ page }) => {
+  test("une acceptation ferme le panneau", async ({ page }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Tout accepter" }).click();
 
-    await expect
-      .poll(() => page.evaluate(() => "dataLayer" in window))
-      .toBe(true);
+    await expect(page.getByRole("dialog", { name: /Cookies/i })).toBeHidden();
   });
 
   test("le choix peut être rouvert depuis le pied de page", async ({ page }) => {

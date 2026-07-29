@@ -1,9 +1,8 @@
 /**
  * Registre des cookies et traceurs.
  *
- * Source de vérité unique : la bannière de consentement, la politique cookies
- * et le chargement conditionnel des scripts s'appuient sur ce fichier. Ajouter
- * un traceur consiste à l'ajouter ici, jamais à insérer un script en dur.
+ * Source de vérité unique : la bannière de consentement et la politique cookies
+ * s'appuient sur ce fichier. Ajouter un traceur consiste à l'ajouter ici.
  */
 export type ConsentCategory = "essential" | "measurement" | "marketing";
 
@@ -27,7 +26,7 @@ export const cookieCategories: readonly CookieCategory[] = [
     id: "measurement",
     name: "Mesure d’audience",
     description:
-      "Statistiques de fréquentation permettant d’améliorer les contenus et les parcours. Déposés uniquement après votre accord.",
+      "Statistiques de fréquentation via Google Analytics, utilisées pour améliorer les contenus et les parcours.",
     required: false,
   },
   {
@@ -79,16 +78,14 @@ export const cookieRegistry: readonly CookieEntry[] = [
   {
     name: "_ga",
     category: "measurement",
-    purpose:
-      "Mesure d’audience Google Analytics 4 : distinguer les visiteurs. Déposé uniquement après consentement.",
+    purpose: "Mesure d’audience Google Analytics 4 : distinguer les visiteurs.",
     retention: "1 mois",
     editor: "Azerty Consulting (Google Analytics 4)",
   },
   {
     name: "_ga_*",
     category: "measurement",
-    purpose:
-      "Mesure d’audience Google Analytics 4 : conserver l’état de la session. Déposé uniquement après consentement.",
+    purpose: "Mesure d’audience Google Analytics 4 : conserver l’état de la session.",
     retention: "1 mois",
     editor: "Azerty Consulting (Google Analytics 4)",
   },

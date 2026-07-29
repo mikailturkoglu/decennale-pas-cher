@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import "@/app/globals.css";
 
 import { ConsentManager, MeasurementLoader } from "@/components/analytics/ConsentManager";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang={siteConfig.language}>
       <body className="flex min-h-screen flex-col">
+        <GoogleAnalytics />
         <a
           href="#contenu"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white"

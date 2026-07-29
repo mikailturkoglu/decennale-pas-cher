@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { auditTrace, dispatchLead, type LeadRecord } from "@/lib/leads/dispatch";
+import { ensureEmailSender } from "@/lib/leads/email";
 import { parseLeadFormData } from "@/lib/leads/form-data";
 import { scoreLead } from "@/lib/lead-scoring";
 import { createLeadReference, rateLimit, verifyCaptcha } from "@/lib/security";
@@ -72,6 +73,7 @@ export async function submitQuote(
     score: scoreLead(lead),
   };
 
+  ensureEmailSender();
   const results = await dispatchLead(record);
 
   // Journal technique : aucune donnée personnelle.

@@ -7,14 +7,10 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { cookieCategories } from "@/data/cookies";
 import {
-  ANALYTICS_MEASUREMENT_ID,
-  disableAnalyticsMeasurement,
-  enableAnalyticsMeasurement,
   isAnalyticsEvent,
   trackEvent,
 } from "@/lib/analytics";
 import {
-  CONSENT_CHANGE_EVENT,
   DEFAULT_CONSENT,
   OPEN_CONSENT_EVENT,
   readConsentCookie,
@@ -106,9 +102,9 @@ export function ConsentManager() {
           Cookies et mesure d’audience
         </h2>
         <p className="mt-2 text-sm text-ink">
-          Nous utilisons des cookies nécessaires au fonctionnement du site. Avec votre accord, nous
-          mesurons l’audience afin d’améliorer les contenus. Vous pouvez accepter, refuser ou choisir
-          catégorie par catégorie, et modifier votre choix à tout moment.
+          Nous utilisons des cookies nécessaires au fonctionnement du site et Google Analytics pour
+          mesurer l’audience. Vous pouvez gérer les catégories optionnelles et modifier votre choix
+          à tout moment.
         </p>
 
         {details ? (
@@ -180,39 +176,13 @@ export function ConsentManager() {
 }
 
 /**
- * Initialise la couche de mesure après consentement et relaie les événements.
+ * Relaye les événements métier vers GA4.
  *
- * Google Analytics 4 (gtag.js) n'est chargé qu'après accord explicite sur la
- * catégorie « mesure d'audience ». Sans `NEXT_PUBLIC_ANALYTICS_ID`, seul le
- * `dataLayer` local est préparé (comportement de secours / tests).
- *
- * Les interactions sont captées par délégation sur `document` à partir des
- * attributs `data-analytics-event` posés dans le balisage : aucun composant
- * n'a besoin de devenir interactif pour être mesuré, et la nomenclature
- * d'événements reste centralisée.
+ * gtag.js est chargé dès le layout (`GoogleAnalytics`). Ici : page_view sur
+ * navigation et délégation des clics `data-analytics-event`.
  */
 export function MeasurementLoader() {
   const pathname = usePathname();
-
-  useEffect(() => {
-    function syncMeasurement() {
-      const stored = readConsentCookie();
-      if (!stored?.measurement) {
-        disableAnalyticsMeasurement();
-        return;
-      }
-      if (ANALYTICS_MEASUREMENT_ID) {
-        enableAnalyticsMeasurement(ANALYTICS_MEASUREMENT_ID);
-      } else {
-        const target = window as Window & { dataLayer?: unknown[] };
-        target.dataLayer ??= [];
-      }
-    }
-
-    syncMeasurement();
-    window.addEventListener(CONSENT_CHANGE_EVENT, syncMeasurement);
-    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, syncMeasurement);
-  }, []);
 
   useEffect(() => {
     trackEvent("page_view", { page_path: pathname });
