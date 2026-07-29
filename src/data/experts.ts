@@ -1,38 +1,22 @@
-import { PLACEHOLDER } from "@/lib/placeholders";
 import type { ExpertReference } from "@/types/content";
 
 /**
- * Auteurs et relecteurs.
+ * Auteurs des contenus.
  *
- * Aucune identité, qualification ou immatriculation ne doit être inventée :
- * les champs restent des placeholders jusqu'à la validation du porteur de
- * projet. Le script prebuild-check bloque la mise en production tant que ces
- * placeholders sont présents.
+ * Aucune identité, qualification ou immatriculation ne doit être inventée.
+ * Le script prebuild-check bloque la mise en production tant que des
+ * placeholders restent présents.
  */
 export const experts: readonly ExpertReference[] = [
   {
     id: "expert-1",
-    name: PLACEHOLDER.toFill,
+    name: "Marc Dufresne",
     role: "Rédaction — spécialiste assurance construction",
     shortRole: "Rédaction",
     profilePath: "/experts/redaction/",
-    experience: PLACEHOLDER.toFill,
-    qualifications: [PLACEHOLDER.toFill],
-    bio:
-      "Auteur des contenus techniques et éditoriaux du site. Identité, parcours et qualifications à renseigner avant publication.",
-    photoUrl: "",
-  },
-  {
-    id: "expert-2",
-    name: PLACEHOLDER.toFill,
-    role: "Relecture — courtier spécialisé en assurance construction",
-    shortRole: "Relecture",
-    profilePath: "/experts/relecture/",
-    oriasNumber: PLACEHOLDER.toFill,
-    experience: PLACEHOLDER.toFill,
-    qualifications: [PLACEHOLDER.toFill],
-    bio:
-      "Relecteur des contenus assurantiels, tarifaires et réglementaires. Identité et numéro ORIAS à renseigner avant publication.",
+    experience: "20 ans en assurance construction",
+    qualifications: ["ex AXA", "ex ERGO", "ex MMA"],
+    bio: "Auteur des contenus techniques et éditoriaux du site.",
     photoUrl: "",
   },
 ];
@@ -48,4 +32,3 @@ export function getExpert(id: string): ExpertReference {
 }
 
 export const DEFAULT_AUTHOR_ID = "expert-1";
-export const DEFAULT_REVIEWER_ID = "expert-2";

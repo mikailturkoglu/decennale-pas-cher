@@ -6,7 +6,13 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { cookieCategories } from "@/data/cookies";
-import { isAnalyticsEvent, trackEvent } from "@/lib/analytics";
+import {
+  ANALYTICS_MEASUREMENT_ID,
+  disableAnalyticsMeasurement,
+  enableAnalyticsMeasurement,
+  isAnalyticsEvent,
+  trackEvent,
+} from "@/lib/analytics";
 import {
   CONSENT_CHANGE_EVENT,
   DEFAULT_CONSENT,
@@ -176,10 +182,9 @@ export function ConsentManager() {
 /**
  * Initialise la couche de mesure après consentement et relaie les événements.
  *
- * Le tableau `dataLayer` n'est créé qu'une fois l'accord donné : en son
- * absence, `trackEvent` ne fait rien, y compris pour les événements relayés
- * ci-dessous. Le chargement du script de l'outil retenu viendra ici, une fois
- * le fournisseur choisi.
+ * Google Analytics 4 (gtag.js) n'est chargé qu'après accord explicite sur la
+ * catégorie « mesure d'audience ». Sans `NEXT_PUBLIC_ANALYTICS_ID`, seul le
+ * `dataLayer` local est préparé (comportement de secours / tests).
  *
  * Les interactions sont captées par délégation sur `document` à partir des
  * attributs `data-analytics-event` posés dans le balisage : aucun composant
@@ -190,16 +195,23 @@ export function MeasurementLoader() {
   const pathname = usePathname();
 
   useEffect(() => {
-    function enableIfConsented() {
+    function syncMeasurement() {
       const stored = readConsentCookie();
-      if (!stored?.measurement) return;
-      const target = window as Window & { dataLayer?: Record<string, unknown>[] };
-      target.dataLayer ??= [];
+      if (!stored?.measurement) {
+        disableAnalyticsMeasurement();
+        return;
+      }
+      if (ANALYTICS_MEASUREMENT_ID) {
+        enableAnalyticsMeasurement(ANALYTICS_MEASUREMENT_ID);
+      } else {
+        const target = window as Window & { dataLayer?: unknown[] };
+        target.dataLayer ??= [];
+      }
     }
 
-    enableIfConsented();
-    window.addEventListener(CONSENT_CHANGE_EVENT, enableIfConsented);
-    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, enableIfConsented);
+    syncMeasurement();
+    window.addEventListener(CONSENT_CHANGE_EVENT, syncMeasurement);
+    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, syncMeasurement);
   }, []);
 
   useEffect(() => {

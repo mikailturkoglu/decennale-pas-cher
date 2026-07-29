@@ -1,5 +1,3 @@
-import { PLACEHOLDER } from "@/lib/placeholders";
-
 /**
  * Mentions récurrentes.
  *
@@ -29,7 +27,8 @@ export const NOTICES = {
   toolDisclaimer:
     "Cet outil ne remplace ni la nomenclature contractuelle de l’assureur ni l’analyse du professionnel chargé de votre dossier.",
   /** Panel réellement comparé. */
-  panelScope: `Périmètre réellement étudié : ${PLACEHOLDER.toFill}. Le site ne compare pas l’intégralité des contrats disponibles sur le marché français.`,
+  panelScope:
+    "Périmètre réellement étudié : les contrats proposés par nos partenaires (Axa, Ergo, La Française, CNP Assurances). Le site ne compare pas l’intégralité des contrats disponibles sur le marché français.",
 } as const;
 
 /** Formulations bannies par le brief : contrôlées par le script prebuild-check. */

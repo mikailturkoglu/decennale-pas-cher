@@ -1,5 +1,3 @@
-import { PLACEHOLDER } from "@/lib/placeholders";
-
 /**
  * Registre des cookies et traceurs.
  *
@@ -79,11 +77,20 @@ export const cookieRegistry: readonly CookieEntry[] = [
     editor: "DécennaleBTP.fr",
   },
   {
-    name: PLACEHOLDER.toFill,
+    name: "_ga",
     category: "measurement",
-    purpose: `Mesure d’audience — outil retenu : ${PLACEHOLDER.toChoose}. Liste exacte des cookies à compléter avant activation.`,
-    retention: PLACEHOLDER.toFill,
-    editor: PLACEHOLDER.toChoose,
+    purpose:
+      "Mesure d’audience Google Analytics 4 : distinguer les visiteurs. Déposé uniquement après consentement.",
+    retention: "1 mois",
+    editor: "Azerty Consulting (Google Analytics 4)",
+  },
+  {
+    name: "_ga_*",
+    category: "measurement",
+    purpose:
+      "Mesure d’audience Google Analytics 4 : conserver l’état de la session. Déposé uniquement après consentement.",
+    retention: "1 mois",
+    editor: "Azerty Consulting (Google Analytics 4)",
   },
 ];
 

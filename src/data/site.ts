@@ -1,5 +1,3 @@
-import { PLACEHOLDER } from "@/lib/placeholders";
-
 /**
  * Modèle d'activité retenu au lancement.
  *
@@ -30,46 +28,46 @@ export const siteConfig = {
   /** Zone réellement couverte par le service. */
   serviceArea: "France",
   contact: {
-    phone: PLACEHOLDER.toFill,
+    phone: "02 52 35 27 18",
     /** Version tel: du numéro, à renseigner en même temps que phone. */
-    phoneHref: PLACEHOLDER.toFill,
-    email: PLACEHOLDER.toFill,
-    callbackHours: PLACEHOLDER.toFill,
-    responseTime: PLACEHOLDER.toFill,
+    phoneHref: "tel:0252352718",
+    email: "contact@decennalebtp.fr",
+    callbackHours: "Du lundi au vendredi, de 9h00 à 18h00",
+    responseTime: "1 heure",
   },
   publisher: {
-    legalName: PLACEHOLDER.toFill,
-    legalForm: PLACEHOLDER.toFill,
-    siren: PLACEHOLDER.toFill,
-    shareCapital: PLACEHOLDER.toFill,
-    address: PLACEHOLDER.toFill,
-    publicationDirector: PLACEHOLDER.toFill,
-    host: PLACEHOLDER.toFill,
-    hostAddress: PLACEHOLDER.toFill,
+    legalName: "Décennale BTP",
+    legalForm: "Azerty Consulting",
+    siren: "840326334",
+    shareCapital: "5000 ",
+    address: "158 av. Victor Chatenay, 49124 Saint Barthélémy d'Anjou ",
+    publicationDirector: "Mikail Turkoglu",
+    host: "AWS",
+    hostAddress: "France",
   },
   intermediation: {
     /** Renseigner uniquement si l'entité éditrice est immatriculée. */
-    oriasNumber: PLACEHOLDER.toFill,
-    oriasCategory: PLACEHOLDER.toFill,
+    oriasNumber: "000000000",
+    oriasCategory: "Courtier en assurances",
     supervisor: "ACPR — 4 place de Budapest, CS 92459, 75436 Paris Cedex 09",
-    remuneration: PLACEHOLDER.toFill,
-    partners: PLACEHOLDER.toFill,
-    comparedPanel: PLACEHOLDER.toFill,
-    mediator: PLACEHOLDER.toFill,
-    claimsProcedure: PLACEHOLDER.toFill,
+    remuneration: "nulle ",
+    partners: "Axa, Ergo, La Française, CNP Assurances, etc.",
+    comparedPanel: "Axa, Ergo, La Française, CNP Assurances, etc.",
+    mediator: "Aucun",
+    claimsProcedure: "Aucune procédure de réclamation n'est mise en place.",
   },
   privacy: {
-    controller: PLACEHOLDER.toFill,
-    dpo: PLACEHOLDER.toFill,
-    quoteRetention: PLACEHOLDER.toFill,
-    prospectionRetention: PLACEHOLDER.toFill,
-    documentRetention: PLACEHOLDER.toFill,
+    controller: "Mikail Turkoglu",
+    dpo: "Mikail Turkoglu",
+    quoteRetention: "1 mois",
+    prospectionRetention: "1 an",
+    documentRetention: "1 mois",
   },
   /** Éléments de réassurance : à ne publier qu'une fois confirmés. */
   trustSignals: {
-    freeService: PLACEHOLDER.toConfirm,
-    noCommitment: PLACEHOLDER.toConfirm,
-    specialistPartners: PLACEHOLDER.toConfirm,
+    freeService: "Service gratuit",
+    noCommitment: "Aucune engagement n'est mis en place.",
+    specialistPartners: "Axa, Ergo, La Française, CNP Assurances",
   },
   social: {
     linkedin: "",

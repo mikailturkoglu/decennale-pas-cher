@@ -7,6 +7,10 @@
  *    courriel, ni raison sociale. Un lead est identifié par sa référence
  *    pseudonymisée.
  */
+
+/** Identifiant GA4 (`G-…`), exposé uniquement côté client. */
+export const ANALYTICS_MEASUREMENT_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID?.trim() || "";
+
 export const ANALYTICS_EVENTS = [
   "page_view",
   "cta_click",
@@ -70,21 +74,78 @@ export function assertNoPersonalData(payload: Record<string, unknown>): void {
   }
 }
 
-interface DataLayerWindow extends Window {
-  dataLayer?: Record<string, unknown>[];
+type GtagFn = (...args: unknown[]) => void;
+
+interface AnalyticsWindow extends Window {
+  dataLayer?: unknown[];
+  gtag?: GtagFn;
+}
+
+/**
+ * Charge gtag.js une seule fois, uniquement après consentement mesure.
+ * `send_page_view: false` : les vues sont émises via `trackEvent("page_view")`.
+ */
+export function enableAnalyticsMeasurement(measurementId: string = ANALYTICS_MEASUREMENT_ID): void {
+  if (typeof window === "undefined" || !measurementId) return;
+
+  const target = window as AnalyticsWindow;
+  target.dataLayer ??= [];
+
+  if (typeof target.gtag !== "function") {
+    // Signature compatible gtag.js : push de `arguments`, pas d'un tableau.
+    target.gtag = function gtag(this: void) {
+      // eslint-disable-next-line prefer-rest-params
+      target.dataLayer!.push(arguments);
+    };
+    target.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      wait_for_update: 500,
+    });
+    target.gtag("js", new Date());
+    target.gtag("config", measurementId, {
+      anonymize_ip: true,
+      send_page_view: false,
+    });
+  }
+
+  if (!document.getElementById("gtag-js")) {
+    const script = document.createElement("script");
+    script.id = "gtag-js";
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    document.head.appendChild(script);
+  }
+
+  target.gtag?.("consent", "update", {
+    analytics_storage: "granted",
+  });
+}
+
+/** Désactive l’écriture analytics si le visiteur retire son consentement. */
+export function disableAnalyticsMeasurement(): void {
+  if (typeof window === "undefined") return;
+  const target = window as AnalyticsWindow;
+  target.gtag?.("consent", "update", {
+    analytics_storage: "denied",
+  });
 }
 
 /**
  * Envoie un événement si, et seulement si, la mesure d'audience est autorisée.
- * En l'absence de consentement, l'appel est silencieusement ignoré.
+ * En l'absence de consentement (pas de dataLayer / gtag), l'appel est ignoré.
  */
 export function trackEvent(event: AnalyticsEvent, payload: AnalyticsPayload = {}): void {
   if (typeof window === "undefined") return;
 
   assertNoPersonalData(payload as Record<string, unknown>);
 
-  const target = window as DataLayerWindow;
-  if (!Array.isArray(target.dataLayer)) return;
+  const target = window as AnalyticsWindow;
+  if (typeof target.gtag === "function") {
+    target.gtag("event", event, payload);
+    return;
+  }
 
+  if (!Array.isArray(target.dataLayer)) return;
   target.dataLayer.push({ event, ...payload });
 }

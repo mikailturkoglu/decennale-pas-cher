@@ -1,5 +1,4 @@
 import { defineLanding } from "@/content/_factories";
-import { PLACEHOLDER } from "@/lib/placeholders";
 
 export const attestationRapide = defineLanding({
   slug: "attestation-decennale-rapide",
@@ -37,7 +36,7 @@ export const attestationRapide = defineLanding({
       title: "Ce qui détermine réellement le délai",
       paragraphs: [
         "Nous n’affichons pas de promesse du type « attestation en quelques heures ». Un tel engagement ne dépend pas du site et ne serait pas tenable pour tous les profils.",
-        `Le délai moyen constaté sur nos demandes sera publié lorsqu’il sera mesuré sur un volume suffisant : ${PLACEHOLDER.toFill}.`,
+        "Nous rappelons sous une heure pour qualifier votre demande. Le délai d’obtention de l’attestation dépend ensuite du partenaire habilité et de la complétude du dossier : aucun délai d’attestation n’est garanti sur ce site.",
       ],
       bullets: [
         "complétude du dossier au premier envoi",

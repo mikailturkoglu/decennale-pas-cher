@@ -12,15 +12,22 @@
 /** Domaines du vérificateur anti-robot, ajoutés uniquement s'il est configuré. */
 const TURNSTILE_ORIGIN = "https://challenges.cloudflare.com";
 
+/** Domaines Google Analytics / Tag Manager, ajoutés uniquement si GA4 est configuré. */
+const GTAG_SCRIPT_ORIGINS = "https://www.googletagmanager.com";
+const GTAG_CONNECT_ORIGINS =
+  "https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com";
+const GTAG_IMG_ORIGINS = "https://www.google-analytics.com https://www.googletagmanager.com";
+
 const usesTurnstile = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+const usesAnalytics = Boolean(process.env.NEXT_PUBLIC_ANALYTICS_ID?.trim());
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${usesTurnstile ? ` ${TURNSTILE_ORIGIN}` : ""}`,
+  `script-src 'self' 'unsafe-inline'${usesTurnstile ? ` ${TURNSTILE_ORIGIN}` : ""}${usesAnalytics ? ` ${GTAG_SCRIPT_ORIGINS}` : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob:${usesAnalytics ? ` ${GTAG_IMG_ORIGINS}` : ""}`,
   "font-src 'self' data:",
-  "connect-src 'self'",
+  `connect-src 'self'${usesAnalytics ? ` ${GTAG_CONNECT_ORIGINS}` : ""}`,
   `frame-src ${usesTurnstile ? TURNSTILE_ORIGIN : "'none'"}`,
   "object-src 'none'",
   "base-uri 'self'",

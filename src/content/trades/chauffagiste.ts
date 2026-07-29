@@ -1,5 +1,4 @@
 import { defineTrade, indicativeBand } from "@/content/_factories";
-import { PLACEHOLDER } from "@/lib/placeholders";
 
 export const chauffagiste = defineTrade({
   tradeValue: "chauffagiste",
@@ -154,20 +153,20 @@ export const chauffagiste = defineTrade({
   priceBands: [
     indicativeBand({
       label: "Chauffagiste créateur, seul",
-      annualRevenue: `CA prévisionnel ${PLACEHOLDER.toFill}`,
-      experience: `Expérience ${PLACEHOLDER.toFill}`,
+      annualRevenue: "CA prévisionnel 80 000 €",
+      experience: "Expérience 3 ans",
       insuranceHistory: "Aucun antécédent d’assurance",
     }),
     indicativeBand({
       label: "Chauffagiste établi, chauffage et sanitaire",
-      annualRevenue: `CA ${PLACEHOLDER.toFill}`,
-      experience: `Expérience ${PLACEHOLDER.toFill}`,
+      annualRevenue: "CA 150 000 €",
+      experience: "Expérience 8 ans",
       insuranceHistory: "Continuité d’assurance, sans sinistre",
     }),
     indicativeBand({
       label: "Entreprise de génie climatique avec salariés",
-      annualRevenue: `CA ${PLACEHOLDER.toFill}`,
-      experience: `Expérience ${PLACEHOLDER.toFill}`,
+      annualRevenue: "CA 350 000 €",
+      experience: "Expérience 12 ans",
       insuranceHistory: "Continuité d’assurance, sinistralité à préciser",
     }),
   ],

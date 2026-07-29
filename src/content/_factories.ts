@@ -1,4 +1,4 @@
-import { DEFAULT_AUTHOR_ID, DEFAULT_REVIEWER_ID } from "@/data/experts";
+import { DEFAULT_AUTHOR_ID } from "@/data/experts";
 import { NOTICES } from "@/data/legal-notices";
 import { SOURCES, TRADE_BASE_SOURCES, type SourceKey } from "@/data/sources";
 import { getTradeCategory, tradeCategoryPath } from "@/data/trade-categories";
@@ -26,7 +26,6 @@ import { normalizePath } from "@/lib/seo";
 
 const DEFAULT_EDITORIAL: EditorialMeta = {
   authorId: DEFAULT_AUTHOR_ID,
-  reviewerId: DEFAULT_REVIEWER_ID,
   publishedAt: "2026-08-01",
   modifiedAt: "2026-08-01",
   nextReviewAt: "2027-02-01",

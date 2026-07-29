@@ -1,5 +1,3 @@
-import { PLACEHOLDER } from "@/lib/placeholders";
-
 /**
  * Éléments descriptifs du service, partagés par l'accueil, les pages
  * commerciales et le formulaire. Centralisés pour rester cohérents et n'être
@@ -93,13 +91,14 @@ export const pricingCriteria: readonly string[] = [
 
 /**
  * Éléments de réassurance affichés sur l'accueil.
- * `value` reste un placeholder tant que l'information n'est pas confirmée :
- * afficher « gratuit » ou « sans engagement » sans validation serait une
- * promesse commerciale non vérifiée.
+ * À aligner avec `siteConfig.trustSignals` et `siteConfig.contact.responseTime`.
  */
 export const trustPoints: readonly { label: string; value: string }[] = [
-  { label: "Service gratuit pour le professionnel", value: PLACEHOLDER.toConfirm },
-  { label: "Demande sans engagement", value: PLACEHOLDER.toConfirm },
-  { label: "Partenaires spécialisés BTP", value: PLACEHOLDER.toConfirm },
-  { label: "Délai de réponse moyen", value: PLACEHOLDER.toFill },
+  { label: "Service gratuit pour les ", value: "professionnels" },
+  { label: "Demande sans ", value: "engagement" },
+  {
+    label: "Partenaires spécialisés BTP",
+    value: "Axa, Ergo, La Française, CNP Assurances",
+  },
+  { label: "Délai de réponse moyen", value: "1 heure" },
 ];

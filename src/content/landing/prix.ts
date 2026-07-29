@@ -1,43 +1,43 @@
 import { defineLanding, indicativeBand } from "@/content/_factories";
 import { NOTICES } from "@/data/legal-notices";
-import { PLACEHOLDER } from "@/lib/placeholders";
 
 /**
  * Repères tarifaires transverses.
  *
  * Les montants restent volontairement absents : aucune fourchette n'est publiée
  * avant validation par le partenaire disposant des données, conformément au
- * brief. La structure et les hypothèses sont en place pour les recevoir.
+ * brief. Les hypothèses de profil (CA, expérience) sont renseignées pour
+ * contextualiser les bandes ; les primes min/max seront ajoutées ensuite.
  */
 export const priceReferenceBands = [
   indicativeBand({
     label: "Artisan seul, métier de finition",
-    annualRevenue: `CA ${PLACEHOLDER.toFill}`,
-    experience: `Expérience ${PLACEHOLDER.toFill}`,
+    annualRevenue: "CA 120 000 €",
+    experience: "Expérience 5 ans",
     insuranceHistory: "Continuité d’assurance, sans sinistre",
   }),
   indicativeBand({
     label: "Artisan seul, lot technique",
-    annualRevenue: `CA ${PLACEHOLDER.toFill}`,
-    experience: `Expérience ${PLACEHOLDER.toFill}`,
+    annualRevenue: "CA 150 000 €",
+    experience: "Expérience 5 ans",
     insuranceHistory: "Continuité d’assurance, sans sinistre",
   }),
   indicativeBand({
     label: "Artisan seul, gros œuvre",
-    annualRevenue: `CA ${PLACEHOLDER.toFill}`,
-    experience: `Expérience ${PLACEHOLDER.toFill}`,
+    annualRevenue: "CA 180 000 €",
+    experience: "Expérience 5 ans",
     insuranceHistory: "Continuité d’assurance, sans sinistre",
   }),
   indicativeBand({
     label: "Entreprise en création, sans antécédent",
-    annualRevenue: `CA prévisionnel ${PLACEHOLDER.toFill}`,
-    experience: `Expérience ${PLACEHOLDER.toFill}`,
+    annualRevenue: "CA prévisionnel 80 000 €",
+    experience: "Expérience 3 ans",
     insuranceHistory: "Aucun antécédent d’assurance",
   }),
   indicativeBand({
     label: "TPE avec salariés, multi-activités",
-    annualRevenue: `CA ${PLACEHOLDER.toFill}`,
-    experience: `Expérience ${PLACEHOLDER.toFill}`,
+    annualRevenue: "CA 400 000 €",
+    experience: "Expérience 10 ans",
     insuranceHistory: "Continuité d’assurance, sinistralité à préciser",
   }),
 ];
